@@ -1,4 +1,10 @@
 class Order < ApplicationRecord
-	validates :status, presence: true
-	validates :status, inclusion: {in: ["delivered", "pending"]}
+  STATUS = ["pending", "delivered"]
+
+  validates :status, presence: true
+  validates :status, inclusion: {in: STATUS}
+
+  scope :delivered, -> {where(status: 'delivered')}
+  scope :pending, -> {where(status: 'pending')}
+
 end

@@ -1,0 +1,10 @@
+= select_tag :status, options_for_select("a", "b")
+%table.table.table-striped
+  %thead
+    %tbody
+      - @orders.each do |order| 
+        %td= order.id
+        %td= order.status
+
+%button.btn.pending Pending
+%button.btn.delivered Delivered

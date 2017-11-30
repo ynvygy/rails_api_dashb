@@ -1,5 +1,8 @@
 class DashboardController < ApplicationController
-	def show
-		@orders = Order.all
+  def index
+	@orders = Order.all
+	respond_to do |format|
+	  format.js
 	end
+  end
 end
