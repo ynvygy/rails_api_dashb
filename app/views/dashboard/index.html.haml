@@ -1,10 +1,11 @@
-= select_tag :status, options_for_select("a", "b")
 %table.table.table-striped
   %thead
     %tbody
       - @orders.each do |order| 
-        %td= order.id
-        %td= order.status
+        %tr{:id=> "order#{order.id}"}
+          %td= order.id
+          %td{:id=> "status#{order.id}"}= order.status
+          %td{:id=> "newstatus#{order.id}"}= select_tag :status, options_for_select(Order::STATUS)
 
 %button.btn.pending Pending
 %button.btn.delivered Delivered

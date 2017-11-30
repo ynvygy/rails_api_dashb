@@ -1,8 +1,9 @@
 class DashboardController < ApplicationController
   def index
-	@orders = Order.all
-	respond_to do |format|
-	  format.js
+	if filter = params[:filter]
+	  @orders = Order.public_send(filter)
+	else
+	  @orders = Order.all
 	end
   end
 end
