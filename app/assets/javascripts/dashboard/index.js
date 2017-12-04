@@ -2,9 +2,9 @@ $(document).on('ready', function() {
     $(".pending").on("click",function(e) {
         $.ajax({
             type: "GET",
-            url: "/dashboard/index",
+            url: "/",
             data: { 
-              filter: pending
+              filter: 'pending'
             },
             success: function(result) {
                 alert('ok');
@@ -18,9 +18,9 @@ $(document).on('ready', function() {
     $(".delivered").on("click",function(e) {
         $.ajax({
             type: "GET",
-            url: "/dashboard/index",
+            url: "/",
             data: { 
-              filter: delivered
+              filter: 'delivered'
             },
             success: function(result) {
                 alert('ok');
@@ -31,10 +31,10 @@ $(document).on('ready', function() {
         });
     });
 
-    $(".status").on("change",function(e) {
+    $("#status").change(function() {
         $.ajax({
             type: "POST",
-            url: "/order/" + order_id,
+            url: "/order/" + $(this).className,
             contentType: "application/json",
             data: { 
               status: $('option:selected').text()
@@ -46,6 +46,7 @@ $(document).on('ready', function() {
                 alert('error');
             }
         });
-        $('status#{order_id}').text($('#newstatus2#{order_id}').text) 
     });
+
 })
+
